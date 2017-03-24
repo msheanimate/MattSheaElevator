@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+    <style>
+        body {
+            color: #fff;
+            text-align: center;
+            text-shadow: 0 1px 3px rgba(0,0,0,.5);
+            padding: 50px;
+        }
+        h1{
+            padding: 20px;
+        }
+        .jumbotron{
+            margin-top:20px;
+            border-radius:6px;
+        }
+
+        .btn{
+            margin: 10px;
+        }
+    </style>
+    <head>
+        <meta charset=UTF-8>
+        <title></title>
+        <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+
+    <body ng-controller="InputController as vm">
+        <div class="col-sm-12">Matt Shea Assessment</div>
+        <div class="col-sm-12 jumbotron">
+            <div class="form-group">
+                <label >Input:</label>
+                <input ng-model="vm.input" type="text" class="form-control" id="usr">
+            </div>
+            <h1> {{vm.input}}</h1>
+            <div>
+                <div class="btn btn-lg btn-default" ng-click="vm.modeOne()">
+                    mode 1
+                </div>
+                <div ng-show="vm.clicked"> Start at floor {{vm.starters.pickUp}} </div>
+
+                <div ng-repeat="user in vm.users | orderBy:['user.dropOff', user.dropOff]">Move to floor {{user.pickUp}} (Pick up Passenger {{user.person}}) ({{user.total}})<br/> Move to floor {{user.dropOff}} (Drop off Passenger {{user.person}}) ({{user.check}}) </div>
+                <div ng-repeat="user in vm.users"> </div>
+            </div>
+            <div>
+                <div class="btn btn-lg btn-default" ng-click="vm.modeTwo()">
+                    mode 2
+                </div>
+                <div ng-show="vm.clicked"> Start at floor {{vm.startersTwo.pickUp}} </div>
+                <div ng-repeat="usertwo in vm.usersTwo ">Move to floor {{usertwo.pickUp}} (Pick up Passenger {{usertwo.person}}) ({{usertwo.total}})<br/> Move to floor {{usertwo.dropOff}} (Drop off Passenger {{usertwo.person}}) ({{usertwo.check}}) </div>
+                <div ng-repeat="usertwo in vm.usersTwo"> </div>
+            </div>
+        </div>
+        
+
+        <script src="app/bower_components/angular/angular.js"></script>
+        <script src="app/app.js"></script>
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  </body>
+</html>
